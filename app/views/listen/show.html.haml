@@ -1,11 +1,42 @@
-- send_method_url = url_for(:controller => "socky", :action => "message")
+- message_method_url = url_for(:controller => "socky", :action => "message")
+- start_url = url_for(:controller => "socky", :action => "start")
+- pause_url = url_for(:controller => "socky", :action => "pause")
+- reset_url = url_for(:controller => "socky", :action => "reset")
 :javascript
-  var send_method_url = '#{send_method_url}';
-= javascript_include_tag :socky, "listen"
+  var message_method_url = '#{message_method_url}';
+  var start_url = '#{start_url}';
+  var pause_url = '#{pause_url}';
+  var reset_url = '#{reset_url}';
+
+= javascript_include_tag :socky
 - random_client_id = Random.new.rand(0..99999999)
 = socky :client_id => random_client_id
 
-%p We should see a player here shortly
+= javascript_include_tag "soundcloud.player.api", "listen"
+:javascript
+  soundcloud.addEventListener('onPlayerReady', function(player, data) {
+    var player = window.player = soundcloud.getPlayer('scPlayer');
+  });
+
+  soundcloud.addEventListener('onMediaPlay', function(player, data) {
+    soundcloud.addRemoveListener('onMediaPlay');
+    console.log("Track plays");
+  });
+
+  soundcloud.addEventListener('onMediaPause', function(player, data) {
+    soundcloud.addRemoveListener('onMediaPlay');
+    player.api_play();
+    console.log("Track un-paused");
+  });
+
+%object(height="81" width="100%" id="scPlayer" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000")
+  %param(name="movie" value="http://player.soundcloud.com/player.swf?url=http%3A%2F%2Fsoundcloud.com%2Fmatas%2Fhobnotropic&amp;enable_api=true&amp;object_id=scPlayer")
+  %param(name="allowscriptaccess" value="always")
+  %embed(allowscriptaccess="always" height="81" src="http://player.soundcloud.com/player.swf?url=http%3A%2F%2Fsoundcloud.com%2Fmatas%2Fhobnotropic&amp;enable_api=true&amp;object_id=scPlayer" type="application/x-shockwave-flash" width="100%" name="scPlayer")/
+
+%input{:type => "submit", :value => "Start", :id => "start_button"}
+%input{:type => "submit", :value => "Pause", :id => "pause_button"}
+%input{:type => "submit", :value => "Reset", :id => "reset_button"}
 
 %div#chat
   %h1 Chat
@@ -13,9 +44,3 @@
     %ul#messages
   %input{:type => "submit", :value => "Send Message", :id => "send_message_button"}
   %input{:type => "text", :id => "send_message"}
-
-  -#%div#message_form_container
-    -#= form_tag url_for(:controller => "socky", :action => "message"), :remote => true do
-      -#= hidden_field_tag :current_user, random_client_id
-      -#= text_field_tag :message
-      -#= submit_tag "Send message"

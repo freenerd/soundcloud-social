@@ -35,6 +35,8 @@ GEM
       abstract (>= 1.0.0)
     haml (3.0.21)
     i18n (0.4.1)
+    jquery-rails (0.2)
+      rails (~> 3.0.0)
     mail (2.2.6.1)
       activesupport (>= 2.3.6)
       mime-types
@@ -71,5 +73,6 @@ PLATFORMS
 
 DEPENDENCIES
   haml
+  jquery-rails
   rails (= 3.0.0)
   sqlite3-ruby

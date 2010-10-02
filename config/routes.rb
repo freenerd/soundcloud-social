@@ -10,6 +10,9 @@ SoundcloudSocial::Application.routes.draw do
       post :subscribe
       post :unsubscribe
       post :message
+      post :start
+      post :pause
+      post :reset
     end
   end
 

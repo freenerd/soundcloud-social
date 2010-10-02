@@ -28,5 +28,20 @@ class SockyController < ApplicationController
     #end
     render :text => "ok"
   end
+
+  def start
+    Socky.send "start"
+    render :text => "ok"
+  end
+
+  def pause
+    Socky.send "pause"
+    render :text => "ok"
+  end
+
+  def reset
+    Socky.send "reset"
+    render :text => "ok"
+  end
 end
 
