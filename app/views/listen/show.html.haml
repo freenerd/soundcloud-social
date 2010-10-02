@@ -1,0 +1,21 @@
+- send_method_url = url_for(:controller => "socky", :action => "message")
+:javascript
+  var send_method_url = '#{send_method_url}';
+= javascript_include_tag :socky, "listen"
+- random_client_id = Random.new.rand(0..99999999)
+= socky :client_id => random_client_id
+
+%p We should see a player here shortly
+
+%div#chat
+  %h1 Chat
+  %div#messages_container
+    %ul#messages
+  %input{:type => "submit", :value => "Send Message", :id => "send_message_button"}
+  %input{:type => "text", :id => "send_message"}
+
+  -#%div#message_form_container
+    -#= form_tag url_for(:controller => "socky", :action => "message"), :remote => true do
+      -#= hidden_field_tag :current_user, random_client_id
+      -#= text_field_tag :message
+      -#= submit_tag "Send message"
