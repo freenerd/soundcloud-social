@@ -11,36 +11,26 @@
 = javascript_include_tag :socky
 - random_client_id = Random.new.rand(0..99999999)
 = socky :client_id => random_client_id
-
+:javascript
+  var user = window.user = #{random_client_id};
 = javascript_include_tag "soundcloud.player.api", "listen"
+
 :javascript
   soundcloud.addEventListener('onPlayerReady', function(player, data) {
     var player = window.player = soundcloud.getPlayer('scPlayer');
   });
 
-  soundcloud.addEventListener('onMediaPlay', function(player, data) {
-    soundcloud.addRemoveListener('onMediaPlay');
-    console.log("Track plays");
-  });
-
-  soundcloud.addEventListener('onMediaPause', function(player, data) {
-    soundcloud.addRemoveListener('onMediaPlay');
-    player.api_play();
-    console.log("Track un-paused");
-  });
-
 %object(height="81" width="100%" id="scPlayer" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000")
   %param(name="movie" value="http://player.soundcloud.com/player.swf?url=http%3A%2F%2Fsoundcloud.com%2Fmatas%2Fhobnotropic&amp;enable_api=true&amp;object_id=scPlayer")
   %param(name="allowscriptaccess" value="always")
-  %embed(allowscriptaccess="always" height="81" src="http://player.soundcloud.com/player.swf?url=http%3A%2F%2Fsoundcloud.com%2Fmatas%2Fhobnotropic&amp;enable_api=true&amp;object_id=scPlayer" type="application/x-shockwave-flash" width="100%" name="scPlayer")/
+  %embed(id="scPlayerEmbed" allowscriptaccess="always" height="81" src="http://player.soundcloud.com/player.swf?url=http%3A%2F%2Fsoundcloud.com%2Fmatas%2Fhobnotropic&amp;enable_api=true&amp;object_id=scPlayer" type="application/x-shockwave-flash" width="100%" name="scPlayer")/
 
-%input{:type => "submit", :value => "Start", :id => "start_button"}
-%input{:type => "submit", :value => "Pause", :id => "pause_button"}
-%input{:type => "submit", :value => "Reset", :id => "reset_button"}
-
-%div#chat
-  %h1 Chat
-  %div#messages_container
-    %ul#messages
-  %input{:type => "submit", :value => "Send Message", :id => "send_message_button"}
-  %input{:type => "text", :id => "send_message"}
+.two-col
+  #content
+    #header
+    #player-placeholder
+    %div#chat
+      %div#messages_container
+        %ul#messages
+      %input{:type => "text", :id => "send_message"}
+      %input{:type => "submit", :value => "Send Message", :id => "send_message_button"}

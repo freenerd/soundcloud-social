@@ -1,0 +1,78 @@
+/* Welcome to Compass.
+ * In this file you should write your main styles. (or centralize your imports)
+ * Import this file using the following HTML or equivalent:
+ * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+
+@import "compass/reset";
+
+$blueprint_grid_columns: 9;
+$blueprint_grid_width: 60px;
+
+@import "blueprint";
+@import "compass/css3/border-radius";
+
+body {
+  background-image: url(/images/bg.jpeg);
+}
+
+.container {
+  padding: 20px, 40px;
+  margin-top: 50px;
+}
+
+.two-col {
+  @include container;
+  padding: 20px, 40px;
+  margin-top: 50px;
+  #header {
+    background-image: url(/images/header.png);
+    background-repeat: no-repeat;
+    height: 120px;
+    width: 600px;
+    @include column(9); }
+  #content {
+    @include column(9, true); }
+}
+
+#player-placeholder {
+  height: 100px; 
+  @include column(9);
+  background-color: #cccccc;
+  @include border-radius(5px, 5px);
+}
+
+#messages_container {
+  overflow: auto;
+  height: 150px;
+  width: 600px;
+  margin-left: 10px;
+  background: white;
+}
+
+#scPlayer {
+  height: 81px;
+  width: 600px;
+  padding-left: 10px;
+  padding-top: 15px;
+}
+
+#scPlayerEmbed {
+  width: 600px;
+  margin-top: 10px;
+}
+
+#chat {
+  @include border-radius(5px, 5px);
+  background-color: #cccccc;
+  height: 180px;
+  margin-top: 250px;
+  padding-top: 10px;
+
+  #send_message {
+    margin-left: 10px;
+    margin-top: 5px;
+    width: 500px;
+  }
+}
+
+
