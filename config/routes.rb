@@ -11,6 +11,7 @@ SoundcloudSocial::Application.routes.draw do
       post :start
       post :pause
       post :reset
+      post :login
     end
   end
 

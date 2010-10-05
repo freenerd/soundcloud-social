@@ -19,6 +19,7 @@ $(document).ready(function(){
         $('#chat-box').removeClass('input-username')
                       .addClass('in-chat')
                       .slideDown('fast');
+        $.post(login_url, { user: user});
       };
     };
   });
@@ -68,9 +69,9 @@ $(document).ready(function(){
     msg = JSON.parse(message);
     console.log(msg);
     switch(msg['action']) {
-      case "subscribe": $("#messages").append('<li><i>' + msg['client'] + ' came online</i></li>');
+      case "login": $("#messages").append('<li><i>' + msg['user'] + ' came online</i></li>');
                         break;   
-      case "unsubscribe": $("#messages").append('<li><i>' + msg['client'] + ' left</i></li>');
+      case "unsubscribe": $("#messages").append('<li><i>' + msg['user'] + ' left</i></li>');
                         break;      
       case "message":  $("#messages").append('<li><b>' + msg['user'] + ':</b> ' + msg['message'] + '</li>');
                        break;

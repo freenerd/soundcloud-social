@@ -26,11 +26,16 @@ body {
   margin-top: 50px;
 
   #header {
-    background-image: url(/images/header.png);
-    background-repeat: no-repeat;
+    @include column(9);
     height: 120px;
     width: 600px;
-    @include column(9); }
+    #logo {
+      background-image: url(/images/header.png);
+      height: 120px;
+      width: 600px;
+      display: block;
+    }
+}
 
   #content {
     @include column(9, true);

@@ -4,6 +4,7 @@ class SockyController < ApplicationController
 
   skip_before_filter :verify_authenticity_token
 
+  # This has no effect on client side
   def subscribe
     Socky.send ({:action => "subscribe", 
                  :client => (params[:client_id] || '')}.to_json)
@@ -12,13 +13,19 @@ class SockyController < ApplicationController
 
   def unsubscribe
     Socky.send ({:action => "unsubscribe",
-                 :client => (params[:client_id] || '')}.to_json)
+                 :user => (params[:client_id] || '')}.to_json)
     render :text => "ok"
   end
 
+  # Performed when user has chosen username
+  def login
+    Socky.send ({:action  => "login", 
+                 :client  => (params[:client_id] || ''),
+                 :user    => params[:user]}.to_json)
+  render :text => "ok"
+  end
+
   def message
-    puts "A message"
-    puts params
     Socky.send ({:action  => "message", 
                  :client  => (params[:client_id] || ''),
                  :user    => params[:user],
