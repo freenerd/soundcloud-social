@@ -24,55 +24,108 @@ body {
   @include container;
   padding: 20px, 40px;
   margin-top: 50px;
+
   #header {
     background-image: url(/images/header.png);
     background-repeat: no-repeat;
     height: 120px;
     width: 600px;
     @include column(9); }
+
   #content {
-    @include column(9, true); }
-}
+    @include column(9, true);
 
-#player-placeholder {
-  height: 100px; 
-  @include column(9);
-  background-color: #cccccc;
-  @include border-radius(5px, 5px);
-}
+    #enter-sc-url {
+      @include column(9);
+      @include border-radius(5px, 5px);
+      margin-top: 20px;
+      height: 100px; 
+      background-color: #cccccc;
 
-#messages_container {
-  overflow: auto;
-  height: 150px;
-  width: 600px;
-  margin-left: 10px;
-  background: white;
-}
+      h2 {
+        font-size: 35px;
+      }
 
-#scPlayer {
-  height: 81px;
-  width: 600px;
-  padding-left: 10px;
-  padding-top: 15px;
-}
+      input {
+        border-color: #ccc;
+        border-width: 5px;
+        border-style: solid;
+        width: 600px;
+        height: 35px;
+        font-size: 15px;
+        font-color: #ccc;
+      }
 
-#scPlayerEmbed {
-  width: 600px;
-  margin-top: 10px;
-}
+      p .small {
+        font-size: 15px;
+        font-color: #eee;
+      }
+    }
 
-#chat {
-  @include border-radius(5px, 5px);
-  background-color: #cccccc;
-  height: 180px;
-  margin-top: 250px;
-  padding-top: 10px;
+    #example-tracks {
+      @include column(9);
+      @include border-radius(5px, 5px);
+      margin-top: 20px;
+      height: 100px; 
+      background-color: #cccccc;
 
-  #send_message {
-    margin-left: 10px;
-    margin-top: 5px;
-    width: 500px;
+      h3 {
+        font-size: 20px;
+      }
+
+    }
+
+    #player-placeholder {
+      @include column(9);
+      @include border-radius(5px, 5px);
+      height: 100px; 
+      background-color: #cccccc;
+    }
+
+    #scPlayer {
+      height: 81px;
+      width: 600px;
+      padding-left: 10px;
+      padding-top: 15px;
+    }
+
+    #chat-box {
+      @include column(9);
+      @include border-radius(5px, 5px);
+      background-color: #cccccc;
+      margin-top: 20px;
+      padding-top: 10px;
+
+      .input-username {
+        height: 40px;
+      }
+
+      .in-chat {
+        height: 180px;
+      }
+
+      #messages_container {
+        overflow: auto;
+        height: 150px;
+        width: 600px;
+        margin-left: 10px;
+        background: white;
+      }
+
+      #send_message {
+        margin-left: 10px;
+        margin-top: 5px;
+        width: 500px;
+      }
+    }
   }
 }
+
+.red {
+  color: red;
+  font-wight: bold;
+}
+
+
 
 

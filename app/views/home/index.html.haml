@@ -1,1 +1,14 @@
-%p This is where we gonna enter a track url
+= javascript_include_tag "home"
+.two-col
+  #content
+    #header
+    #enter-sc-url
+      %h2 Paste your SoundCloud track url here
+      %input{:type => "text", :id => "sc_url"}
+        %p.small Should look like http://soundcloud.com/username/track-name
+
+    #example-tracks
+      %h3 If you just want to test SoundCloud Social, join one of these tracks:
+      %p Techno (20 online)
+      %p Rock (0 online)
+      %p Jazz (2 online)

@@ -9,7 +9,7 @@
   var reset_url = '#{reset_url}';
 
 = javascript_include_tag :socky
-- random_client_id = Random.new.rand(0..99999999)
+- random_client_id = Random.new.rand(0..99999999999)
 = socky :client_id => random_client_id
 :javascript
   var user = window.user = #{random_client_id};
@@ -20,17 +20,21 @@
     var player = window.player = soundcloud.getPlayer('scPlayer');
   });
 
-%object(height="81" width="100%" id="scPlayer" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000")
-  %param(name="movie" value="http://player.soundcloud.com/player.swf?url=http%3A%2F%2Fsoundcloud.com%2Fmatas%2Fhobnotropic&amp;enable_api=true&amp;object_id=scPlayer")
+%object(id="scPlayer" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000")
+  %param(name="movie" value="http://player.soundcloud.com/player.swf?url=http%3A%2F%2Fsoundcloud.com%2F#{@userpermalink}%2F#{@trackpermalink}&amp;enable_api=true&amp;object_id=scPlayer")
   %param(name="allowscriptaccess" value="always")
-  %embed(id="scPlayerEmbed" allowscriptaccess="always" height="81" src="http://player.soundcloud.com/player.swf?url=http%3A%2F%2Fsoundcloud.com%2Fmatas%2Fhobnotropic&amp;enable_api=true&amp;object_id=scPlayer" type="application/x-shockwave-flash" width="100%" name="scPlayer")/
+  %embed(id="scPlayerEmbed" allowscriptaccess="always" src="http://player.soundcloud.com/player.swf?url=http%3A%2F%2Fsoundcloud.com%2F#{@userpermalink}%2F#{@trackpermalink}&amp;enable_api=true&amp;object_id=scPlayer" type="application/x-shockwave-flash" name="scPlayer")/
 
 .two-col
   #content
     #header
     #player-placeholder
-    %div#chat
-      %div#messages_container
-        %ul#messages
-      %input{:type => "text", :id => "send_message"}
-      %input{:type => "submit", :value => "Send Message", :id => "send_message_button"}
+    #chat-box 
+      #enter-username
+        %p Enter a username for the chat please:
+        %input{:type => "text", :id => "username"}
+      #chat
+        #messages_container
+          %ul#messages
+        %input{:type => "text", :id => "send_message"}
+        %input{:type => "submit", :value => "Send Message", :id => "send_message_button"}

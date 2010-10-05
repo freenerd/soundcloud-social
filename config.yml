@@ -1,8 +1,8 @@
 :port: 8080
 :debug: false
 
-:subscribe_url: http://193.145.51.186:3000/socky/subscribe
-:unsubscribe_url: http://193.145.51.186:3000/socky/unsubscribe
+:subscribe_url: http://10.23.4.219:3000/socky/subscribe
+:unsubscribe_url: http://10.23.4.219:3000/socky/unsubscribe
 #
 #:subscribe_url: http://localhost:3000/socky/subscribe
 #:unsubscribe_url: http://localhost:3000/socky/unsubscribe

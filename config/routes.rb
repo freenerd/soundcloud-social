@@ -3,8 +3,6 @@ SoundcloudSocial::Application.routes.draw do
 
   get "home/index"
 
-  get "/listen" => "listen#show"
-
   resources :socky do
     collection do
       post :subscribe
@@ -14,6 +12,10 @@ SoundcloudSocial::Application.routes.draw do
       post :pause
       post :reset
     end
+  end
+
+  controller :listen do
+    match "/:userpermalink/:trackpermalink" => "listen#show"
   end
 
   # You can have the root of your site routed with "root"

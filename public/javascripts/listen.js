@@ -1,5 +1,29 @@
 $(document).ready(function(){
   // Chat
+
+  // hide chat and display username input
+  $('#chat').hide();
+  $('#enter-username').show();
+  $('#chat-box').addClass('input-username');
+
+  // start chat
+  $('#username').keypress(function(e) {
+    code = (e.keyCode ? e.keyCode : e.which);
+    if (code == 13) {
+      username = $('#username').val();
+      if ($('#username').val() != '') {
+        user = username;
+        $('#chat-box').slideUp('fast');
+        $('#chat').show();
+        $('#enter-username').hide();
+        $('#chat-box').removeClass('input-username')
+                      .addClass('in-chat')
+                      .slideDown('fast');
+      };
+    };
+  });
+
+  // send a message
   $('#send_message_button').click(function( ){
     $.post(message_method_url,
            { message: $('#send_message').get(0).value,
@@ -35,32 +59,21 @@ $(document).ready(function(){
     }
     console.log("Track paused");
   });
-
   // End SC Player
 
 
   // Receive Socky Messages
   Socky.prototype.respond_to_message = function(message) {
     console.log(message);
-    msg = message.split(':',3)
+    msg = JSON.parse(message);
     console.log(msg);
-    switch(msg[0]) {
-      case "subscribe": $("#messages").append('<li><i>' + msg[1] + ' came online</i></li>');
-                       // Make Chat scroll down
-                       var chatDiv = $('#messages_container');
-                       $(chatDiv).scrollTop(100000000000000000);
-                       break;   
-      case "unsubscribe": $("#messages").append('<li><i>' + msg[1] + ' left</i></li>');
-                       // Make Chat scroll down
-                       var chatDiv = $('#messages_container');
-                       $(chatDiv).scrollTop(100000000000000000);
-                       break;      
-      case "message":  $("#messages").append('<li><b>' + msg[1] + ':</b> ' + msg[2] + '</li>');
-                       // Make Chat scroll down
-                       var chatDiv = $('#messages_container');
-                       $(chatDiv).scrollTop(100000000000000000);
+    switch(msg['action']) {
+      case "subscribe": $("#messages").append('<li><i>' + msg['client'] + ' came online</i></li>');
+                        break;   
+      case "unsubscribe": $("#messages").append('<li><i>' + msg['client'] + ' left</i></li>');
+                        break;      
+      case "message":  $("#messages").append('<li><b>' + msg['user'] + ':</b> ' + msg['message'] + '</li>');
                        break;
-
       case "start":    player.api_seekTo(0)
                        player.api_play();
                        console.log("message play");
@@ -72,6 +85,9 @@ $(document).ready(function(){
                        console.log("reset");
                        break;
     };
+     // Make Chat scroll down
+     var chatDiv = $('#messages_container');
+     $(chatDiv).scrollTop(100000000000000000);
   };
   // End Receive Socky Message
 
