@@ -18,7 +18,7 @@
 = javascript_include_tag :socky
 - random_client_id = Random.new.rand(0..99999999999)
 = socky :client_id => random_client_id, 
-        :channel => channel; 
+        :channels => channel; 
 :javascript
   var user = window.user = #{random_client_id};
 = javascript_include_tag "soundcloud.player.api", "listen"
