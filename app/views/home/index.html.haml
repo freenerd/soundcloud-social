@@ -1,15 +1,20 @@
 = javascript_include_tag "home"
-.two-col
-  #content
-    #header
-      %a#logo{:href => '/'}
-    #enter-sc-url
-      %h2 Paste your SoundCloud track url here
-      %input{:type => "text", :id => "sc_url"}
-        %p.small Should look like http://soundcloud.com/username/track-name
+  
+#header
+  %a#logo{:href => '/'}
+#enter-sc-url
+  %h2 Paste your SoundCloud track url here
+  %input{:type => "text", :id => "sc_url"}
+    %p.small Should look like http://soundcloud.com/username/track-name
 
-    #example-tracks
-      %h3 If you just want to test SoundCloud Social, join one of these tracks:
-      %p Techno (20 online)
-      %p Rock (0 online)
-      %p Jazz (2 online)
+#example-tracks
+  %h3 If you just want to test SoundCloud Social, join one of these tracks:
+  %p 
+    %a{:href => "/snoopdoggmusic/02-i-wanna-rock"}Snoop Dog - I Wanna Rock
+    %span (0 people online)
+  %p 
+    %a{:href => "/warp-records/brian-eno-2-forms-of-anger-small-craft-on-a-milk-sea"}Brian Eno - 2 Forms Of Anger Rock
+    %span (0 people online)
+  %p
+    %a{:href => "/imogenheap/first-train-home"}Imogen Heap - First Train Home
+    %span (0 people online)

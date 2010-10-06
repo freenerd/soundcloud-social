@@ -19,7 +19,22 @@ $(document).ready(function(){
         $('#chat-box').removeClass('input-username')
                       .addClass('in-chat')
                       .slideDown('fast');
-        $.post(login_url, { user: user});
+        
+        // login
+        $.post(login_url,
+               { user: user,
+                 channel: channel
+               }
+        );
+
+        //register logout hook
+        window.onunload = function() {
+          $.post(logout_url,
+                { user: user,
+                  channel: channel
+                }
+          );
+        };
       };
     };
   });
@@ -28,6 +43,7 @@ $(document).ready(function(){
   $('#send_message_button').click(function( ){
     $.post(message_method_url,
            { message: $('#send_message').get(0).value,
+             channel: channel,
              user: user}
           );
     $('#send_message').get(0).value = "";
@@ -42,12 +58,14 @@ $(document).ready(function(){
   // End Chat
 
   // SC Player
-  soundcloud.debug = true;
+  soundcloud.debug = false;
   soundcloud_playing = false;
   soundcloud.addEventListener('onMediaPlay', function(player, data) {
     if (!soundcloud_playing) {
       $.post(start_url,
-            {position: player.api_getTrackPosition()});
+            { position: player.api_getTrackPosition(),
+              channel: channel }
+      );
       soundcloud_playing = true;
     };
     console.log("Track plays");
@@ -55,7 +73,9 @@ $(document).ready(function(){
 
   soundcloud.addEventListener('onMediaPause', function(player, data) {
     if (soundcloud_playing) {
-      $.post(pause_url);
+      $.post(pause_url,
+             { channel: channel }
+      );
       soundcloud_playing = false;
     }
     console.log("Track paused");
@@ -68,27 +88,29 @@ $(document).ready(function(){
     console.log(message);
     msg = JSON.parse(message);
     console.log(msg);
-    switch(msg['action']) {
-      case "login": $("#messages").append('<li><i>' + msg['user'] + ' came online</i></li>');
-                        break;   
-      case "unsubscribe": $("#messages").append('<li><i>' + msg['user'] + ' left</i></li>');
-                        break;      
-      case "message":  $("#messages").append('<li><b>' + msg['user'] + ':</b> ' + msg['message'] + '</li>');
-                       break;
-      case "start":    player.api_seekTo(0)
-                       player.api_play();
-                       console.log("message play");
-                       break;
-      case "pause":    player.api_stop();                    
-                       console.log("message pause");
-                       break;
-      case "reset":    player.api_seekTo(0);
-                       console.log("reset");
-                       break;
+    if (!msg['channel'] || msg['channel'] == channel) {
+       switch(msg['action']) {
+        case "login": $("#messages").append('<li><i>' + msg['user'] + ' came online</i></li>');
+                          break;   
+        case "logout": $("#messages").append('<li><i>' + msg['user'] + ' left</i></li>');
+                          break;      
+        case "message":  $("#messages").append('<li><b>' + msg['user'] + ':</b> ' + msg['message'] + '</li>');
+                         break;
+        case "start":    player.api_seekTo(0)
+                         player.api_play();
+                         console.log("message play");
+                         break;
+        case "pause":    player.api_stop();                    
+                         console.log("message pause");
+                         break;
+        case "reset":    player.api_seekTo(0);
+                         console.log("reset");
+                         break;
+      };
+       // Make Chat scroll down
+       var chatDiv = $('#messages_container');
+       $(chatDiv).scrollTop(100000000000000000);
     };
-     // Make Chat scroll down
-     var chatDiv = $('#messages_container');
-     $(chatDiv).scrollTop(100000000000000000);
   };
   // End Receive Socky Message
 

@@ -15,6 +15,29 @@ body {
   background-image: url(/images/bg.jpeg);
 }
 
+@font-face {
+ font-family: "Interstate light";
+ font-weight: light;
+ //src: local("Interstate-Light"), url(../fonts/Interstate-Light.ttf) format("truetype");
+}
+
+body, html {
+  padding: 0;
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.3em;
+  font-family: "Lucida Grande", Verdana, Arial;
+  -moz-user-select : none;
+  -khtml-user-select : none;
+}
+
+h1, h2 {
+  font-weight: normal;
+  margin: 0 0 0em 0;
+  line-height: 1.3em;
+  font-family: "Interstate light", interstate-light, "Lucida Grande", Helvetica, Arial, sans-serif;
+}  
+
 .container {
   padding: 20px, 40px;
   margin-top: 50px;
@@ -24,105 +47,105 @@ body {
   @include container;
   padding: 20px, 40px;
   margin-top: 50px;
-
-  #header {
-    @include column(9);
-    height: 120px;
-    width: 600px;
-    #logo {
-      background-image: url(/images/header.png);
-      height: 120px;
-      width: 600px;
-      display: block;
-    }
 }
 
-  #content {
-    @include column(9, true);
+#header {
+  @include column(9);
+  height: 120px;
+  width: 600px;
+}
 
-    #enter-sc-url {
-      @include column(9);
-      @include border-radius(5px, 5px);
-      margin-top: 20px;
-      height: 100px; 
-      background-color: #cccccc;
+#header #logo {
+  background-image: url(/images/header.png);
+  height: 120px;
+  width: 600px;
+  display: block;
+}
 
-      h2 {
-        font-size: 35px;
-      }
+#content {
+  @include column(9, true);
+}
 
-      input {
-        border-color: #ccc;
-        border-width: 5px;
-        border-style: solid;
-        width: 600px;
-        height: 35px;
-        font-size: 15px;
-        font-color: #ccc;
-      }
+#enter-sc-url {
+  @include column(9);
+  @include border-radius(5px, 5px);
+  margin-top: 20px;
+  height: 100px; 
+  background-color: #cccccc;
+}
 
-      p .small {
-        font-size: 15px;
-        font-color: #eee;
-      }
-    }
+#enter-sc-url h2 {
+  font-size: 25px;
+}
 
-    #example-tracks {
-      @include column(9);
-      @include border-radius(5px, 5px);
-      margin-top: 20px;
-      height: 100px; 
-      background-color: #cccccc;
+#enter-sc-url input {
+  border-color: #ccc;
+  border-width: 5px;
+  border-style: solid;
+  width: 600px;
+  height: 35px;
+  font-size: 15px;
+  font-color: #ccc;
+}
 
-      h3 {
-        font-size: 20px;
-      }
+#enter-sc-url p .small {
+  font-size: 15px;
+  font-color: #eee;
+}
 
-    }
+#example-tracks {
+  @include column(9);
+  @include border-radius(5px, 5px);
+  margin-top: 20px;
+  height: 100px; 
+  background-color: #cccccc;
+}
 
-    #player-placeholder {
-      @include column(9);
-      @include border-radius(5px, 5px);
-      height: 100px; 
-      background-color: #cccccc;
-    }
+#example-tracks h3 {
+  font-size: 20px;
+}
 
-    #scPlayer {
-      height: 81px;
-      width: 600px;
-      padding-left: 10px;
-      padding-top: 15px;
-    }
+#player-placeholder {
+  @include column(9);
+  @include border-radius(5px, 5px);
+  height: 100px; 
+  background-color: #cccccc;
+}
 
-    #chat-box {
-      @include column(9);
-      @include border-radius(5px, 5px);
-      background-color: #cccccc;
-      margin-top: 20px;
-      padding-top: 10px;
+#scPlayer {
+  height: 81px;
+  width: 600px;
+  padding-left: 10px;
+  padding-top: 15px;
+}
 
-      .input-username {
-        height: 40px;
-      }
+#chat-box {
+  @include column(9);
+  @include border-radius(5px, 5px);
+  background-color: #cccccc;
+  margin-top: 20px;
+  padding-top: 10px;
 
-      .in-chat {
-        height: 180px;
-      }
+  .input-username {
+    height: 40px;
+  }
 
-      #messages_container {
-        overflow: auto;
-        height: 150px;
-        width: 600px;
-        margin-left: 10px;
-        background: white;
-      }
+  .in-chat {
+    height: 180px;
+  }
 
-      #send_message {
-        margin-left: 10px;
-        margin-top: 5px;
-        width: 500px;
-      }
-    }
+  #messages_container {
+    overflow: auto;
+    height: 150px;
+    width: 600px;
+    margin-left: 10px;
+    background: white;
+  }
+
+  #send_message {
+    margin-left: 10px;
+    margin-top: 5px;
+    width: 500px;
   }
 }
 
@@ -131,6 +154,79 @@ body {
   font-wight: bold;
 }
 
+#footer {
+  @include column(9);
+  height: 15px;
+  margin-top: 20px;
+  background-color: #cccccc;
+  padding: 5px;
+}
 
+#footer a {
+  float:right;
+  margin-right: 20px;
+  text-decoration: underline;
+}
 
+#about-box {
+  position: absolute;
+  left: 50%;
+  top: 190px;
+  margin-left: -325px;
+  width: 600px;
+  background: white;
+  line-height: 1.4em;
+  border: 5px solid rgb(213,213,213);
+  padding: 20px;
+  z-index: 20; 
+  display: none;
+}
 
+#about-box #built-by {
+  color: #666;
+}
+
+#about-box #built-by a {
+  color: #333;
+}
+
+#about-box #built-by a:hover {
+  color: #f06;
+}
+
+#about-box #built-by p {
+  margin: 7px 0 0 0;
+}
+
+#about-box h3 {
+  margin: 0 -5px 20px 0px;
+  padding: 10px 10px 10px 133px;
+  color: black;
+  font-size: 13px;
+  line-height: 1.4em;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  -webkit-border-radius: 3px; 
+}
+
+#about-box h3 a {
+  color: black;
+  background: #f06;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  -webkit-border-radius: 3px; 
+  padding: 1px 3px;
+}
+
+#about-box a.close, .share-box a.close {
+  text-decoration: none;
+  float: right;
+  margin-right: -5px;
+  margin-top: -5px;
+  text-decoration: none;
+	font-size: 20px;
+  width: 11px;
+  height: 11px;
+  display: block;
+  outline: 0;
+}
