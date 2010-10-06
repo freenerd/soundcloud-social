@@ -5,6 +5,7 @@
 - login_url = url_for(:controller => "socky", :action => "login")
 - logout_url = url_for(:controller => "socky", :action => "logout")
 - channel = @userpermalink + '/' + @trackpermalink
+
 :javascript
   var message_method_url = '#{message_method_url}';
   var start_url = '#{start_url}';

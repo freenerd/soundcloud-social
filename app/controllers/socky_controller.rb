@@ -45,6 +45,7 @@ class SockyController < ApplicationController
   end
 
   def start
+    puts params;
     Socky.send ({:action  => "start", 
                  :channel => params[:channel],
                  :client  => (params[:client_id] || ''),

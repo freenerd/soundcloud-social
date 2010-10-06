@@ -59,7 +59,7 @@ $(document).ready(function(){
 
   // SC Player
   soundcloud.debug = false;
-  soundcloud_playing = false;
+  var soundcloud_playing = window.soundcloud_playing = false;
   soundcloud.addEventListener('onMediaPlay', function(player, data) {
     if (!soundcloud_playing) {
       $.post(start_url,
