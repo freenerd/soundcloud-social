@@ -94,7 +94,14 @@ $(document).ready(function(){
                           break;   
         case "logout": $("#messages").append('<li><i>' + msg['user'] + ' left</i></li>');
                           break;      
-        case "message":  $("#messages").append('<li><b>' + msg['user'] + ':</b> ' + msg['message'] + '</li>');
+        case "message":  var minutes = parseInt(player.api_getTrackPosition() / 60);
+                         var seconds = parseInt(player.api_getTrackPosition() % 60);
+                         if((minutes + '').length < 2) { minutes = '0' + minutes };
+                         if((seconds + '').length < 2) { seconds = '0' + seconds };
+                         var track_position = minutes + ':' + seconds;
+                         $("#messages").append('<li><i>' + track_position + '</i> ' + 
+                                                '<b>' + msg['user'] + ':</b> ' + 
+                                                msg['message'] + '</li>');
                          break;
         case "start":    player.api_seekTo(0)
                          player.api_play();
@@ -109,7 +116,7 @@ $(document).ready(function(){
       };
        // Make Chat scroll down
        var chatDiv = $('#messages_container');
-       $(chatDiv).scrollTop(100000000000000000);
+       $(chatDiv).scrollTop(100000000);
     };
   };
   // End Receive Socky Message
