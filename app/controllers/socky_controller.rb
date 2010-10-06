@@ -6,14 +6,14 @@ class SockyController < ApplicationController
 
   # This has no effect on client side
   def subscribe
-    Socky.send ({:action => "subscribe",
+    Socky.send( {:action => "subscribe",
                  :channel => params[:channel],
                  :client => (params[:client_id] || '')}.to_json)
     render :text => "ok"
   end
 
   def unsubscribe
-    Socky.send ({:action => "unsubscribe",
+    Socky.send( {:action => "unsubscribe",
                  :channel => params[:channel],
                  :user => (params[:client_id] || '')}.to_json)
     render :text => "ok"
@@ -21,7 +21,7 @@ class SockyController < ApplicationController
 
   # Performed when user has chosen username
   def login
-    Socky.send ({:action  => "login", 
+    Socky.send( {:action  => "login", 
                  :user    => params[:user],
                  :channel => params[:channel]}.to_json,
                :to => { :channels => params[:channel] })
@@ -29,7 +29,7 @@ class SockyController < ApplicationController
   end
 
   def logout
-    Socky.send({:action  => "logout", 
+    Socky.send( {:action  => "logout", 
                  :user    => params[:user],
                  :channel => params[:channel]}.to_json,
                :to => { :channels => params[:channel] })
@@ -48,7 +48,7 @@ class SockyController < ApplicationController
   end
 
   def start
-    Socky.send ({:action  => "start", 
+    Socky.send( {:action  => "start", 
                  :channel => params[:channel],
                  :client  => (params[:client_id] || ''),
                  :postion => (params[:position] || '')}.to_json,
@@ -57,7 +57,7 @@ class SockyController < ApplicationController
   end
 
   def pause
-    Socky.send ({:action => "pause",
+    Socky.send( {:action => "pause",
                  :channel => params[:channel],
                  :client => (params[:client_id] || '')}.to_json,
                 :to => { :channels => params[:channel] })
@@ -65,7 +65,7 @@ class SockyController < ApplicationController
   end
 
   def reset
-    Socky.send ({:action => "reset",
+    Socky.send( {:action => "reset",
                  :client => (params[:client_id] || '')}.to_json)
     render :text => "ok"
   end
