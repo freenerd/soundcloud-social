@@ -3,18 +3,17 @@ SoundCloud Social
 Play tracks from soundcloud collaboratively and chat about them. Heavily inspired by http://www.youtubesocial.com
 The track is started synchronously. All participants always hear the same position of the song. Everyone can chat with each other while the track plays.
 
-Used to build this:
+This hack was build by Johan after an idea by Nils at the Music Hack Day Barcelona 2010.
+
+Used technology:
 SoundCloud Javascript Widget Player
 Rails 3
 Socky
 
+How to install:
+Make sure you have Ruby 1.9.2 running. Install all gems with "bundle install".
+
 How to run:
-
 1) Make sure that config.yml and config/socky_hosts.yml point to your server (if in development then localhost)
-
 2) start rails with 'rails server'
-
 3) start socky websockets server with 'socky -c config.yml'
-
-This hack was build by Johan after an idea by Nils at the Music Hack Day Barcelona 2010.
-

@@ -29,9 +29,9 @@
   });
 
 %object(id="scPlayer" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000")
-  %param(name="movie" value="http://player.soundcloud.com/player.swf?url=http%3A%2F%2Fsoundcloud.com%2F#{@userpermalink}%2F#{@trackpermalink}&amp;enable_api=true&amp;single_active=false&amp;object_id=scPlayer")
+  %param(name="movie" value="http://player.soundcloud.com/player.swf?url=http%3A%2F%2Fsoundcloud.com%2F#{@userpermalink}%2F#{@trackpermalink}&amp;enable_api=true&amp;object_id=scPlayer")
   %param(name="allowscriptaccess" value="always")
-  %embed(id="scPlayerEmbed" allowscriptaccess="always" src="http://player.soundcloud.com/player.swf?url=http%3A%2F%2Fsoundcloud.com%2F#{@userpermalink}%2F#{@trackpermalink}&amp;enable_api=true&amp;single_active=false&amp;object_id=scPlayer" type="application/x-shockwave-flash" name="scPlayer")/
+  %embed(id="scPlayerEmbed" allowscriptaccess="always" src="http://player.soundcloud.com/player.swf?url=http%3A%2F%2Fsoundcloud.com%2F#{@userpermalink}%2F#{@trackpermalink}&amp;enable_api=true&amp;object_id=scPlayer" type="application/x-shockwave-flash" name="scPlayer")/
 
 #header
   %a#logo{:href => '/'}
